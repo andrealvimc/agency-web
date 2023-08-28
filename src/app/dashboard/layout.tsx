@@ -3,6 +3,8 @@ import { MainNav } from "@/components/dashboard/main-nav"
 import { Search } from "@/components/dashboard/search"
 import { UserNav } from "@/components/dashboard/user-nav"
 import { Inter } from "next/font/google"
+import { Suspense } from "react"
+import Image from "next/image"
 
 export const metadata: Metadata = {
   title: 'Agencia Escalavel',
@@ -21,8 +23,10 @@ export default function LayoutDashboard({
       <div className="border-b">
         <div className="flex h-16 items-center px-4">
           {/* <TeamSwitcher /> */}
-          <img src="./logo.png" className="h-12"/>
-          <MainNav className="mx-6" />
+          <img src="/logo.png"  className="h-12"/>
+          <Suspense fallback={<div className="flex items-center space-x-4 lg:space-x-6">Loading navbar...</div>}>
+            <MainNav className="mx-6" />
+          </Suspense>
           <div className="ml-auto flex items-center space-x-4">
             <Search />
             <UserNav />
