@@ -23,6 +23,7 @@ export async function MainNav({
 
   const navLinks: navLinkType[] = [
     { name: "Overview", href: "/dashboard", roles: [Role.ADMIN] },
+    { name: "Início", href: "/dashboard", roles: [Role.AGENCY] },
     { name: "Usuários", href: "/dashboard/usuarios", roles: [Role.ADMIN] },
     { name: "Agências", href: "/dashboard/agencias", roles: [Role.ADMIN] },
     { name: "Templates", href: "/dashboard/templates", roles: [Role.ADMIN] },

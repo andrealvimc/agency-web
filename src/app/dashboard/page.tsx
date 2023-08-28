@@ -41,7 +41,7 @@ export default function DashboardPage() {
             <Card>
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium">
-                  Total Revenue
+                  Receita total
                 </CardTitle>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -59,14 +59,14 @@ export default function DashboardPage() {
               <CardContent>
                 <div className="text-2xl font-bold">$45,231.89</div>
                 <p className="text-xs text-muted-foreground">
-                  +20.1% from last month
+                  +20.1% do mês passado
                 </p>
               </CardContent>
             </Card>
             <Card>
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium">
-                  Subscriptions
+                  Assinaturas
                 </CardTitle>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -86,13 +86,13 @@ export default function DashboardPage() {
               <CardContent>
                 <div className="text-2xl font-bold">+2350</div>
                 <p className="text-xs text-muted-foreground">
-                  +180.1% from last month
+                  +180.1% do mês passado
                 </p>
               </CardContent>
             </Card>
             <Card>
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Sales</CardTitle>
+                <CardTitle className="text-sm font-medium">Vendas</CardTitle>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
@@ -110,14 +110,14 @@ export default function DashboardPage() {
               <CardContent>
                 <div className="text-2xl font-bold">+12,234</div>
                 <p className="text-xs text-muted-foreground">
-                  +19% from last month
+                  +19% do mês passado
                 </p>
               </CardContent>
             </Card>
             <Card>
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium">
-                  Active Now
+                  Ativos agora
                 </CardTitle>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

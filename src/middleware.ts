@@ -5,12 +5,12 @@ export default withAuth(
   function middleware(request: NextRequestWithAuth) {
     // console.log(request.nextUrl.pathname, "pathname");
     // console.log(request.nextauth.token, "token");
-    // if (
-    //   request.nextUrl.pathname.startsWith("/dashboard") &&
-    //   request.nextauth.token?.role !== "admin"
-    // ) {
-    //   return NextResponse.rewrite(new URL("/denied", request.url));
-    // }
+    if (
+      request.nextUrl.pathname.includes("/dashboard/agencias") &&
+      request.nextauth.token?.role !== "admin"
+    ) {
+      return NextResponse.rewrite(new URL("/denied", request.url));
+    }
   },
   {
     callbacks: {

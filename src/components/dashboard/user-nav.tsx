@@ -1,5 +1,6 @@
+'use client'
 import { getServerSession } from "next-auth"
-import { signOut } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import {
   Avatar,
   AvatarFallback,
@@ -18,7 +19,8 @@ import {
 } from "../ui/dropdown-menu"
 
 export async function UserNav() {
-  const session = await getServerSession()
+  // const session = await getServerSession()
+  const { data: session } = useSession()
   const fallbackAvatar =  session?.user ?  `${session?.user?.name.split(" ")[0].charAt(0)}${session?.user?.name.split(" ")[1].charAt(0)}` : "AA"
 
   return (
@@ -57,12 +59,11 @@ export async function UserNav() {
           {/* <DropdownMenuItem>New Team</DropdownMenuItem> */}
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        {/* <div onClick={() => signOut()}> */}
-          <DropdownMenuItem >
+          <DropdownMenuItem onClick={() => signOut()} >
             Log out
           <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
         </DropdownMenuItem> 
-        {/* </div> */}
+        
         
       </DropdownMenuContent>
     </DropdownMenu>
