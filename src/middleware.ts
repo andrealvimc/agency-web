@@ -3,11 +3,20 @@ import { NextResponse } from "next/server";
 
 export default withAuth(
   function middleware(request: NextRequestWithAuth) {
-    // console.log(request.nextUrl.pathname, "pathname");
-    // console.log(request.nextauth.token, "token");
+    // # ADMIN
     if (
-      request.nextUrl.pathname.includes("/dashboard/agencias") &&
+      request.nextUrl.pathname.includes("/dashboard/agencies") &&
       request.nextauth.token?.role !== "admin"
+    ) {
+      return NextResponse.rewrite(new URL("/denied", request.url));
+    }
+
+    // # SELLER & MANAGER & CUSTOMER
+    if (
+      request.nextUrl.pathname.includes("/dashboard/crm") &&
+      request.nextauth.token?.role !== "seller" &&
+      request.nextauth.token?.role !== "manager" &&
+      request.nextauth.token?.role !== "customer"
     ) {
       return NextResponse.rewrite(new URL("/denied", request.url));
     }

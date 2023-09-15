@@ -1,7 +1,7 @@
 import { Metadata } from "next"
 import Link from "next/link"
 
-import { UserAuthForm } from "./components/user-auth-form"
+import { UserAuthForm } from "./forms/user-auth-form"
 import { getServerSession } from "next-auth"
 import { redirect } from "next/navigation"
 

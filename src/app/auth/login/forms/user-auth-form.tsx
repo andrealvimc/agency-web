@@ -6,7 +6,6 @@ import { useForm } from  "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter, useSearchParams } from 'next/navigation'
 
-
 import { cn } from "@/lib/utils"
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
@@ -19,12 +18,10 @@ interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 type FormData = z.infer<typeof loginSchema>;
 
-
 const loginSchema = z.object({
   email: z.string().email("Email inválido").min(3, "Email inválido"),
   password: z.string().min(3, 'A senha precisa ter no mínimo 3 caracteres')
 })
-
 
 export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
   const router = useRouter()
@@ -69,20 +66,13 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
       })
     }
     
-    
-    // await new Promise<void>((resolve) => {
-    //   setTimeout(() => {
-    //     resolve();
-    //   }, 2000); // 2 seconds in milliseconds
-    // });
-    // // router.push("/tweets");
   }
 
   return (
     <div className={cn("grid gap-6", className)} {...props}>
       <form onSubmit={handleSubmit(onSubmitForm)}>
         <div className="grid gap-4">
-          <div className="grid gap-2">
+          <div className="grid gap-2 ">
             <Label className="" htmlFor="email">
               Email
             </Label>

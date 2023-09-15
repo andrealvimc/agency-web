@@ -17,12 +17,13 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu"
+import Link from "next/link";
 
-export async function UserNav() {
+export function UserNav() {
   // const session = await getServerSession()
   const { data: session } = useSession()
-  const fallbackAvatar =  session?.user ?  `${session?.user?.name.split(" ")[0].charAt(0)}${session?.user?.name.split(" ")[1].charAt(0)}` : "AA"
-
+  // const fallbackAvatar =  session?.user?.name ?  `${session?.user?.name.split(" ")[0].charAt(0)}${session?.user?.name.split(" ")[1].charAt(0)}` : "AA"
+ const fallbackAvatar = "AA"
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -44,10 +45,13 @@ export async function UserNav() {
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <DropdownMenuItem>
-            Perfil
-            <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
-          </DropdownMenuItem>
+          <Link href="/settings/account">
+            <DropdownMenuItem>
+              Perfil
+              <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
+            </DropdownMenuItem>
+          </Link>
+          
           <DropdownMenuItem>
             Faturamento
             <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>

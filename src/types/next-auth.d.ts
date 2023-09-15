@@ -1,5 +1,15 @@
 import NextAuth, { DefaultSession, DefaultUser } from "next-auth";
 
+type User = {
+  id: number;
+  name: string;
+  email: string;
+  role: string;
+  token: string;
+  agencyId: string | null;
+  agencyRole: string | null;
+};
+
 declare module "next-auth" {
   interface Session {
     user?: {
@@ -9,6 +19,7 @@ declare module "next-auth" {
       role: string;
       token: string;
       agencyId: string | null;
+      agencyRole: string | null;
     } & DefaultSession;
   }
 
