@@ -23,7 +23,8 @@ const handler = NextAuth({
         // Add logic here to look up the user from the credentials supplied
 
         try {
-          const res = await fetch("http://localhost:3333/auth/login", {
+          // @ts-ignore
+          const res = await fetch(process.env.SERVER_URL, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
