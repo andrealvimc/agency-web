@@ -6,8 +6,8 @@ import { getServerSession } from "next-auth"
 import { redirect } from "next/navigation"
 
 export const metadata: Metadata = {
-  title: "Authentication",
-  description: "Authentication forms built using the components.",
+  title: "Agencia Escalavel - Login",
+  description: "",
 }
 
 export default async function AuthenticationPage() {

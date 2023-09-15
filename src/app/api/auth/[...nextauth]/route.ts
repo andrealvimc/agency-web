@@ -25,7 +25,8 @@ const handler = NextAuth({
         try {
           // @ts-ignore
           const res = await fetch(
-            process.env.SERVER_URL || "https://api.agenciaescalavel.com.br",
+            process.env.SERVER_URL + "/auth/login" ||
+              "https://api.agenciaescalavel.com.br/auth/login",
             {
               method: "POST",
               headers: {
