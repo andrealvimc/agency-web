@@ -2,6 +2,7 @@ import { getServerSession } from "next-auth";
 
 import { CreateAgency } from "./components/create-agency";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { AgenciesList } from "./components/agencies";
 
 async function getAgenciesData(): Promise<any[]> {
   const session = await getServerSession(authOptions);
@@ -11,6 +12,7 @@ async function getAgenciesData(): Promise<any[]> {
       "Content-Type": "application/json",
       Authorization: `Bearer ${session?.user?.token}`,
     },
+    next: { revalidate: 3600 } 
   });
 
 
@@ -24,8 +26,6 @@ async function getAgenciesData(): Promise<any[]> {
 export default async function Agencias() {
   const data = await getAgenciesData();
 
-  console.log(data)
-
   return (
     <div>
       <div className="flex items-center justify-between space-y-2">
@@ -36,11 +36,7 @@ export default async function Agencias() {
       </div>
 
       <div className="flex items-center justify-between space-y-2">
-        {/* <DataTable data={tasks} columns={columns} /> */}
-
-        {data.map((agency: any, idx) => {
-          return <div key={idx}>{agency.name}</div>;
-        })}
+        <AgenciesList data={data} />
       </div>
     </div>
   );
