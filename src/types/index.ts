@@ -8,3 +8,15 @@ export interface Agency {
   document: string;
   ownerId: string;
 }
+
+export interface User {
+  id: string;
+  email: string;
+  name: string;
+  role: string;
+  address?: string;
+  phone?: string;
+  cpf: string;
+  agencyId?: null;
+  agencyRole?: null;
+}

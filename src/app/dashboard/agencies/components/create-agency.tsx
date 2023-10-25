@@ -27,7 +27,7 @@ import { Label } from "@/components/ui/label";
 import { toast } from "@/components/ui/use-toast";
 import { Icons } from "@/components/ui/icon";
 import CreateAgencyForm from "./create-agency-form";
-import { useState } from "react";
+import { useState, Suspense } from "react";
 
 export function CreateAgency() {
   
@@ -44,7 +44,9 @@ export function CreateAgency() {
           </DialogDescription>
         </DialogHeader>
          
-         <CreateAgencyForm  />
+        <Suspense fallback={<div>carregando...</div>}>
+          <CreateAgencyForm  />
+        </Suspense>
         
       </DialogContent>
     </Dialog>
