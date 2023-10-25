@@ -23,7 +23,6 @@ export default async function Agencias() {
         <Suspense fallback={'carregando'}>
           <AgenciesList data={data} />
         </Suspense>
-        {/* <AgenciesList data={data} /> */}
       </div>
     </div>
   );

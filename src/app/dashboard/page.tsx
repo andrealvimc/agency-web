@@ -1,17 +1,17 @@
-'use client';
 
-import { useSession } from "next-auth/react";
+import { getServerSession } from "next-auth"
+
 import AdminDashboardPage from "./AdminPage";
-import { useRouter } from "next/navigation";
 import AgencyDashboardPage from "./AgencyPage";
 import { Suspense } from "react";
 import Denied from "../denied/page";
 import CustomerDashboardPage from "./CustomerPage";
+import { authOptions } from "../api/auth/[...nextauth]/route";
 
 
-export default function DashboardPage() {
-  const { data: session} = useSession();
-  
+export default async function DashboardPage() {
+  const session = await getServerSession(authOptions)
+
 
   if(session?.user?.role === 'admin'){ 
 

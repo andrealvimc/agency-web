@@ -19,8 +19,6 @@ export function MainNav({
   ...props
 }: React.HTMLAttributes<HTMLElement>) {
    const pathname = usePathname();
-
-
  
   const { data: session } = useSession();
 

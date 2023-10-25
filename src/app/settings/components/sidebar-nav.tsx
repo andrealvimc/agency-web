@@ -1,7 +1,5 @@
 
-
 import Link from "next/link"
-import { usePathname,  } from "next/navigation"
 import { headers } from 'next/headers';
 
 
@@ -16,9 +14,7 @@ interface SidebarNavProps extends React.HTMLAttributes<HTMLElement> {
 }
 
 export function SidebarNav({ className, items, ...props }: SidebarNavProps) {
-//  "use client"
-  // const pathname = usePathname()
-      const pathname = headers().get('x-next-pathname') as string;
+    const pathname = headers().get('x-next-pathname') as string;
 
 
   return (
