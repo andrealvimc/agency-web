@@ -11,14 +11,16 @@ export async function getAgencies(): Promise<any[]> {
       "Content-Type": "application/json",
       Authorization: `Bearer ${session?.user?.token}`,
     },
-    next: { revalidate: 10} 
+    // next: { revalidate: 10} 
   });
 
 
-  if (!res.ok) {
-    console.log(res.status, res.statusText)
+  if (res.status !== 200) {
+    // console.log(res.status, res.statusText)
     throw new Error("Failed to fetch data");
   }
 
+
+  // console.log(res.status, res.statusText)
   return res.json();
 }

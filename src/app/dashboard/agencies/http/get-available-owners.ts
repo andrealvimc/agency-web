@@ -18,18 +18,16 @@ export async function getAvailableOwners(): Promise<User[]> {
   });
 
 
-  if (!res.ok) {
-    console.log(res.status, res.statusText)
+   if (res.status !== 200) {
     throw new Error("Failed to fetch data");
   }
+
 
   const data = await res.json();
 
   
 
   const availableOwners = data.filter((user: User) => user.agencyRole == "manager" && user.role == "agency");
-
-  console.log(availableOwners)
 
   return availableOwners;
 }
