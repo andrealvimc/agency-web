@@ -1,4 +1,4 @@
-interface Agency {
+export interface Agency {
   id: string;
   name: string;
   nameFantasy: string;
@@ -7,4 +7,16 @@ interface Agency {
   email: string;
   document: string;
   ownerId: string;
+}
+
+export interface User {
+  id: string;
+  email: string;
+  name: string;
+  role: string;
+  address?: string;
+  phone?: string;
+  cpf: string;
+  agencyId?: null;
+  agencyRole?: null;
 }

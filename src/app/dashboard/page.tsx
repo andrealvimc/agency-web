@@ -23,7 +23,6 @@ export default function DashboardPage() {
   }
 
   if(session?.user?.role === 'agency'){ 
-    console.log(session?.user, 'USE PAGE')
     const agencyId = session?.user?.agencyId || "";
 
     return (
@@ -34,7 +33,6 @@ export default function DashboardPage() {
   }
 
   if(session?.user?.role === 'customer'){ 
-    console.log(session?.user, 'USE PAGE')
     const agencyId = session?.user?.agencyId || "";
 
     return (

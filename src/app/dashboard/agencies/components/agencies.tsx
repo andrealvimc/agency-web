@@ -42,7 +42,6 @@ import {
 } from "@/components/ui/table"
 
 
-
 export const columns: ColumnDef<Agency>[] = [
   {
     id: "select",
@@ -146,7 +145,7 @@ type AgenciesListProps = {
   data: Agency[]
 }
 
-export function AgenciesList({data}: AgenciesListProps) {
+export function AgenciesList({ data }: AgenciesListProps) {
   const [sorting, setSorting] = React.useState<SortingState>([])
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
