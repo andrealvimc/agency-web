@@ -1,32 +1,14 @@
-import { getServerSession } from "next-auth";
+
 
 import { CreateAgency } from "./components/create-agency";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+
 import { AgenciesList } from "./components/agency-list";
 import { Suspense } from "react";
+import { getAgencies } from "./http/get-agencies";
 
-export async function getAgenciesData(): Promise<any[]> {
-  const session = await getServerSession(authOptions);
-
-  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/agency`, {
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${session?.user?.token}`,
-    },
-    next: { revalidate: 10} 
-  });
-
-
-  if (!res.ok) {
-    console.log(res.status, res.statusText)
-    throw new Error("Failed to fetch data");
-  }
-
-  return res.json();
-}
 
 export default async function Agencias() {
-  const data = await getAgenciesData();
+  const data = await getAgencies();
 
   return (
     <div>
