@@ -54,7 +54,7 @@ export const FormSchema = z.object({
 
 export default function CreateAgencyForm() {
   const { data: session } = useSession();
-    const router = useRouter();
+  const router = useRouter();
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),

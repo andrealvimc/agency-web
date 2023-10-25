@@ -1,17 +1,17 @@
 
+
 import z from "zod";
-import { FormSchema } from "../components/create-agency-form";
 
 
-export async function createAgency(
-  data: z.infer<typeof FormSchema>,
+export async function deleteAgency(
+  data: { id: string },
   session: any
 ): Promise<boolean> {
   try {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_SERVER_URL}/agency`,
       {
-        method: "POST",
+        method: "DELETE",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${session?.user?.token}`,
@@ -21,13 +21,10 @@ export async function createAgency(
     );
 
     if (response.status !== 200) {
-      throw new Error("Ocorreu um erro ao enviar o formulário");
+      throw new Error("Ocorreu um erro ao excluir a agencia");
     }
 
     return true;
-    // return 
-
-    //
   } catch (err) {
     console.log(err);
 

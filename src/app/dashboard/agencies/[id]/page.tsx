@@ -1,3 +1,4 @@
+import { DeleteAgency } from "../components/delete-agency"
 
 interface AgencyPageProps  {
     params: {
@@ -5,9 +6,12 @@ interface AgencyPageProps  {
     }
 }
 
-export default function AgencyPage({params}: AgencyPageProps) {
+export default async function AgencyPage({params}: AgencyPageProps) {
 
     return (
-        <div>{params.id}</div>
+        <div>
+            <p>{params.id}</p>
+            <DeleteAgency id={params.id} />
+        </div>
     )
 }
