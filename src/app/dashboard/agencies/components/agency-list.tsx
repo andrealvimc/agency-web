@@ -41,6 +41,7 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import { Agency } from "@/types"
+import Link from "next/link"
 
 
 export const columns: ColumnDef<Agency>[] = [
@@ -115,6 +116,7 @@ export const columns: ColumnDef<Agency>[] = [
     enableHiding: false,
     cell: ({ row }) => {
       const payment = row.original
+      const id = row.original.id
 
       return (
         <DropdownMenu>
@@ -126,15 +128,23 @@ export const columns: ColumnDef<Agency>[] = [
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Ações</DropdownMenuLabel>
+           
+            
+            
+            <Link href={`/dashboard/agencies/${id}`}>
+              <DropdownMenuItem>Visualizar informações</DropdownMenuItem>
+            </Link>
+            <DropdownMenuItem>Transferir posse</DropdownMenuItem>
+            <Link href={`/dashboard/agencies/${id}/edit`}>
+              <DropdownMenuItem>Editar informações</DropdownMenuItem>
+            </Link>
+             <DropdownMenuSeparator />
             <DropdownMenuItem
               onClick={() => navigator.clipboard.writeText(payment.id)}
             >
               Copiar ID da agencia
             </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>Transferir posse</DropdownMenuItem>
-            <DropdownMenuItem>Editar informações</DropdownMenuItem>
-            <DropdownMenuItem>Alterar plano</DropdownMenuItem>
+           
           </DropdownMenuContent>
         </DropdownMenu>
       )

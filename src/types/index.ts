@@ -17,6 +17,6 @@ export interface User {
   address?: string;
   phone?: string;
   cpf: string;
-  agencyId?: null;
-  agencyRole?: null;
+  agencyId?: string;
+  agencyRole?: string;
 }

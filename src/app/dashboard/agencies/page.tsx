@@ -2,7 +2,7 @@ import { getServerSession } from "next-auth";
 
 import { CreateAgency } from "./components/create-agency";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-import { AgenciesList } from "./components/agencies";
+import { AgenciesList } from "./components/agency-list";
 import { Suspense } from "react";
 
 export async function getAgenciesData(): Promise<any[]> {

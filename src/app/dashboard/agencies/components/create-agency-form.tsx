@@ -3,8 +3,8 @@
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
+
 import { Suspense, useEffect, useState } from "react";
-import { revalidatePath } from "next/cache";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -28,7 +28,6 @@ import {
   FormDescription,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import {
@@ -38,8 +37,8 @@ import {
 } from "@/components/ui/popover";
 import { CaretSortIcon, CheckIcon } from "@radix-ui/react-icons";
 import { cn } from "@/lib/utils";
-import { getUsers } from "../http/get-users";
 import { createAgency } from "../http/create-agency";
+import { getAvailableOwners } from "../http/get-available-owners";
 
 export const FormSchema = z.object({
   name: z.string().min(2, "O nome precisa ter no mínimo 2 caracteres"),
@@ -55,74 +54,44 @@ export const FormSchema = z.object({
 
 export default function CreateAgencyForm() {
   const { data: session } = useSession();
-  const router = useRouter();
+    const router = useRouter();
+
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
   });
+
   const {
     handleSubmit,
     register,
-    setValue,
-    formState: { errors, isSubmitting, isDirty, isValid, isLoading },
+    formState: { errors, isSubmitting, isValid, isLoading },
   } = form;
-  const [emails, setEmails] = useState<{ label: string; value: string }[]>([
-    { label: "Padrão", value: "teste@alvim.net" },
-  ]);
+
+  const [emails, setEmails] = useState<{ label: string; value: string }[]>([]);
 
   async function handleFormSubmit(data: z.infer<typeof FormSchema>) {
-    const createAgencyResponse = await createAgency(data, session)
+    const createAgencyResponse = await createAgency(data, session);
 
     if (createAgencyResponse) {
       toast({
         title: "Agencia criada com sucesso",
         variant: "default",
       });
-      router.push('/dashboard/agencies')
+
+      location.reload();
+      router.push("/dashboard/agencies");
+      
+
     } else {
       toast({
         title: "Ocorreu um erro ao criar a agencia.",
         variant: "destructive",
       });
     }
-
-    // try {
-    //   const response = await fetch(
-    //     `${process.env.NEXT_PUBLIC_SERVER_URL}/agency`,
-    //     {
-    //       method: "POST",
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //         Authorization: `Bearer ${session?.user?.token}`,
-    //       },
-    //       body: JSON.stringify(data),
-    //     }
-    //   );
-
-
-    //   if (response.status !== 200) {
-    //     throw new Error("Ocorreu um erro ao enviar o formulário");
-    //   }
-
-    //   toast({
-    //     title: "Agencia criada com sucesso",
-    //     variant: "default",
-    //   });
-
-      
-    //   router.refresh();
-    //   return;
-    // } catch (error) {
-    //   console.log(error);
-    //   return toast({
-    //     title: "Ocorreu um erro ao criar a agencia.",
-    //     variant: "destructive",
-    //   });
-    // }
   }
 
-  // getEmails
+  // getAvailableOwners
   useEffect(() => {
-    getUsers().then((usersLast) => {
+    getAvailableOwners().then((usersLast) => {
       let emailsMap = usersLast.map((user) => {
         return {
           label: user.name,

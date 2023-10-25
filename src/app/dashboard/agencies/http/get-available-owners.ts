@@ -6,7 +6,7 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { User } from "@/types";
 
 
-export async function getUsers(): Promise<User[]> {
+export async function getAvailableOwners(): Promise<User[]> {
   const session = await getServerSession(authOptions);
 
   const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/users`, {
@@ -23,5 +23,13 @@ export async function getUsers(): Promise<User[]> {
     throw new Error("Failed to fetch data");
   }
 
-  return res.json();
+  const data = await res.json();
+
+  
+
+  const availableOwners = data.filter((user: User) => user.agencyRole == "manager" && user.role == "agency");
+
+  console.log(availableOwners)
+
+  return availableOwners;
 }

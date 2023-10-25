@@ -23,9 +23,10 @@ export function MainNav({
   const navLinks: navLinkType[] = [
     { name: "Overview", href: "/dashboard", roles: [Role.ADMIN] },
     { name: "Início", href: "/dashboard", roles: [Role.AGENCY] },
-    { name: "Usuários", href: "/dashboard/users", roles: [Role.ADMIN] },
     { name: "Agências", href: "/dashboard/agencies", roles: [Role.ADMIN] },
+    { name: "Usuários", href: "/dashboard/users", roles: [Role.ADMIN] },
 
+    { name: "Categorias", href: "/dashboard/categories", roles: [Role.AGENCY, Role.ADMIN]},
     { name: "Criativos", href: "/dashboard/media", roles: [Role.AGENCY, Role.ADMIN]},
     { name: "Páginas", href: "/dashboard/pages", roles: [Role.AGENCY, Role.ADMIN]},
     { name: "Contas", href: "/dashboard/accounts", roles: [Role.AGENCY, Role.ADMIN]},
