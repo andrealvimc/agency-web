@@ -3,6 +3,7 @@ import { getServerSession } from "next-auth";
 import { CreateAgency } from "./components/create-agency";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { AgenciesList } from "./components/agencies";
+import { Suspense } from "react";
 
 async function getAgenciesData(): Promise<any[]> {
   const session = await getServerSession(authOptions);
@@ -36,7 +37,9 @@ export default async function Agencias() {
       </div>
 
       <div className="flex items-center justify-between space-y-2">
-        <AgenciesList data={data} />
+        <Suspense>
+          <AgenciesList data={data} />
+        </Suspense>
       </div>
     </div>
   );

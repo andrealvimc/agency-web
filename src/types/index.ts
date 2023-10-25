@@ -1,4 +1,4 @@
-interface Agency {
+export interface Agency {
   id: string;
   name: string;
   nameFantasy: string;
