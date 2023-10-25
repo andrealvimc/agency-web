@@ -4,10 +4,13 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { Role } from "@/enums";
 import { useSession } from "next-auth/react";
+import { usePathname } from "next/navigation";
+
 
 type navLinkType = {
   name: string;
   href: string;
+  label?: string;
   roles: Role[];
 };
 
@@ -15,6 +18,10 @@ export function MainNav({
   className,
   ...props
 }: React.HTMLAttributes<HTMLElement>) {
+   const pathname = usePathname();
+
+
+ 
   const { data: session } = useSession();
 
   if (!session) return;
@@ -23,15 +30,15 @@ export function MainNav({
   const navLinks: navLinkType[] = [
     { name: "Overview", href: "/dashboard", roles: [Role.ADMIN] },
     { name: "Início", href: "/dashboard", roles: [Role.AGENCY] },
-    { name: "Agências", href: "/dashboard/agencies", roles: [Role.ADMIN] },
-    { name: "Usuários", href: "/dashboard/users", roles: [Role.ADMIN] },
+    { name: "Agências", href: "/dashboard/agencies", label: "agencies", roles: [Role.ADMIN] },
+    { name: "Usuários", href: "/dashboard/users", label: "users", roles: [Role.ADMIN] },
 
-    { name: "Categorias", href: "/dashboard/categories", roles: [Role.AGENCY, Role.ADMIN]},
-    { name: "Criativos", href: "/dashboard/media", roles: [Role.AGENCY, Role.ADMIN]},
-    { name: "Páginas", href: "/dashboard/pages", roles: [Role.AGENCY, Role.ADMIN]},
-    { name: "Contas", href: "/dashboard/accounts", roles: [Role.AGENCY, Role.ADMIN]},
+    { name: "Categorias", href: "/dashboard/categories", label: "categories", roles: [Role.AGENCY, Role.ADMIN]},
+    { name: "Criativos", href: "/dashboard/media", label: "media", roles: [Role.AGENCY, Role.ADMIN]},
+    { name: "Páginas", href: "/dashboard/pages", label: "pages",  roles: [Role.AGENCY, Role.ADMIN]},
+    { name: "Contas", href: "/dashboard/accounts", label: "accounts", roles: [Role.AGENCY, Role.ADMIN]},
 
-    { name: "CRM", href: "/dashboard/crm", roles: [ Role.MANAGER, Role.CUSTOMER, Role.SELLER]},
+    { name: "CRM", href: "/dashboard/crm", label: "crm", roles: [ Role.MANAGER, Role.CUSTOMER, Role.SELLER]},
   ];
 
 
@@ -50,43 +57,12 @@ export function MainNav({
           <Link
             key={idx}
             href={item.href}
-            className="text-sm font-medium transition-colors hover:text-primary"
+            className={`text-sm font-medium transition-colors hover:text-primary ${pathname.includes(item.label || "test") ? "text-primary" : ""}`}
           >
             {item.name}
           </Link>
         );
       })}
-
-      {/* <Link
-        href="/dashboard"
-        className="text-sm font-medium transition-colors hover:text-primary"
-      >
-        Overview
-      </Link>
-      <Link
-        href="/dashboard/usuarios"
-        className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
-      >
-        Usuários
-      </Link>
-      <Link
-        href="/dashboard/agencias"
-        className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
-      >
-        Agências
-      </Link>
-      <Link
-        href="/dashboard/templates"
-        className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
-      >
-        Templates
-      </Link>
-      <Link
-        href="/dashboard/categorias"
-        className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
-      >
-        Categorias
-      </Link> */}
     </nav>
   );
 }
