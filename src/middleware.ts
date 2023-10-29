@@ -2,10 +2,28 @@ import { withAuth, NextRequestWithAuth } from "next-auth/middleware";
 import { NextResponse } from "next/server";
 
 export default withAuth(
-  function middleware(request: NextRequestWithAuth) {
+  async function middleware(request: NextRequestWithAuth) {
+
+    // const hasValidToken = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/users/me`, {
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //     Authorization: `Bearer ${request.nextauth.token?.token}`,
+    //   },
+    // });
+
+    // const result = await hasValidToken.json();
+
+    // console.log(result)
+
+    // if (result.statusCode === 401) {
+    //   return NextResponse.rewrite(new URL("/auth/login", request.url));
+    // }
+
+
     // # ADMIN
     if (
       request.nextUrl.pathname.includes("/dashboard/agencies") &&
+      request.nextUrl.pathname.includes("/dashboard/categories") &&
       request.nextauth.token?.role !== "admin"
     ) {
       return NextResponse.rewrite(new URL("/denied", request.url));
@@ -23,7 +41,15 @@ export default withAuth(
   },
   {
     callbacks: {
-      authorized: ({ token }) => !!token,
+
+      authorized: async ({ token, req }) => {
+        const user = token;
+
+
+
+        return !!user?.token
+
+      },
     },
   }
 );

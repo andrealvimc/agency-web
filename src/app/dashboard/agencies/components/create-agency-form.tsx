@@ -263,7 +263,7 @@ export default function CreateAgencyForm() {
               (isSubmitting && (
                 <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
               ))}
-            Acessar
+            Criar
           </Button>
         </DialogFooter>
       </form>

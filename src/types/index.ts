@@ -20,3 +20,17 @@ export interface User {
   agencyId?: string;
   agencyRole?: string;
 }
+
+export interface Category { 
+  id: string;
+  name: string;
+  // agencyId: string;
+}
+
+export interface Creative {
+  id: string;
+  name: string;
+  categoryId: string;
+  category: string;
+  format: string;
+}

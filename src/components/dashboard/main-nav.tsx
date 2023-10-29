@@ -32,7 +32,7 @@ export function MainNav({
     { name: "Usuários", href: "/dashboard/users", label: "users", roles: [Role.ADMIN] },
 
     { name: "Categorias", href: "/dashboard/categories", label: "categories", roles: [Role.AGENCY, Role.ADMIN]},
-    { name: "Criativos", href: "/dashboard/media", label: "media", roles: [Role.AGENCY, Role.ADMIN]},
+    { name: "Criativos", href: "/dashboard/creatives", label: "creatives", roles: [Role.AGENCY, Role.ADMIN]},
     { name: "Páginas", href: "/dashboard/pages", label: "pages",  roles: [Role.AGENCY, Role.ADMIN]},
     { name: "Contas", href: "/dashboard/accounts", label: "accounts", roles: [Role.AGENCY, Role.ADMIN]},
 
