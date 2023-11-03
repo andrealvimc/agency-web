@@ -19,6 +19,7 @@ export interface User {
   cpf: string;
   agencyId?: string;
   agencyRole?: string;
+  accountId?: string
 }
 
 export interface Category { 

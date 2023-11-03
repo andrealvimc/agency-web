@@ -8,6 +8,8 @@ export function transformRoleToText(role: string) {
       return "Dono";
     case Role.SELLER:
       return "Vendedor";
+    case Role.CUSTOMER:
+      return "Cliente";
     case Role.MANAGER:
       return "Gerente";
     default:

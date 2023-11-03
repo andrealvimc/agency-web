@@ -6,8 +6,9 @@ type User = {
   email: string;
   role: string;
   token: string;
-  agencyId: string | null;
-  agencyRole: string | null;
+  agencyId?: string | null;
+  agencyRole?: string | null;
+  accountId?: string;
 };
 
 declare module "next-auth" {
@@ -20,6 +21,7 @@ declare module "next-auth" {
       token: string;
       agencyId: string | null;
       agencyRole: string | null;
+      accountId?: string;
     } & DefaultSession;
   }
 

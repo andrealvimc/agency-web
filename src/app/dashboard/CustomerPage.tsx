@@ -16,7 +16,14 @@ export default function CustomerDashboardPage({ agencyId, user }: CustomerPagePr
 
       <div className="">
         {user.agencyRole}
+        
         <div>Você é: {transformRoleToText(user.agencyRole || "")} dessa agência</div>
+      </div>
+
+      <br />
+      <div>
+        {user.accountId}
+        - ID DA CONTA DE CLIENTE
       </div>
 
       <Button className="bg-primary">BOTAO DE TESTE TEMA</Button>
