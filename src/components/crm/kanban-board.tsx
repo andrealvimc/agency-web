@@ -263,6 +263,7 @@ export function KanbanBoard() {
 
       {"document" in window &&
         createPortal(
+          // @ts-ignore
           <DragOverlay>
             {activeColumn && (
               <BoardColumn
