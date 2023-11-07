@@ -13,7 +13,7 @@ export default function CRMPage() {
       </div>
 
       <div className="flex mt-5 items-center space-y-2">
-          {/* <KanbanBoard /> */}
+          <KanbanBoard />
       </div>
     </div>
   );
