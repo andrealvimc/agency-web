@@ -24,6 +24,7 @@ import type { Column } from "@/components/crm/board-column";
 // import { coordinateGetter } from "./multipleContainersKeyboardPreset";
 import { hasDraggableData } from "@/helpers/utils-kanban";
 import { coordinateGetter } from "@/helpers/multiple-containers-keyboard-preset";
+import { Button } from "../ui/button";
 
 const defaultCols = [
   {
@@ -311,18 +312,21 @@ export function KanbanBoard() {
 
       {"document" in window &&
         createPortal(
-          <DragOverlay>
-            {activeColumn && (
-              <BoardColumn
-                isOverlay
-                column={activeColumn}
-                 tasks={tasks.filter(
-                  (task) => task.columnId === activeColumn.id
-                )}
-              />
-            )}
-            {activeTask && <TaskCard task={activeTask} isOverlay />}
-          </DragOverlay>,
+          // @ts-ignore
+          <Fragment>
+            <DragOverlay>
+              {activeColumn && (
+                <BoardColumn
+                  isOverlay
+                  column={activeColumn}
+                  tasks={tasks.filter(
+                    (task) => task.columnId === activeColumn.id
+                  )}
+                />
+              )}
+              {activeTask && <TaskCard task={activeTask} isOverlay />}
+            </DragOverlay>
+          </Fragment>,
           document.body,
         )}
     </DndContext>
