@@ -1,5 +1,5 @@
 'use client'
-import { useMemo, useRef, useState } from "react";
+import { Fragment, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
 import { BoardColumn, BoardContainer } from "./board-column";
@@ -239,7 +239,48 @@ export function KanbanBoard() {
     },
   };
 
-  return (
+  // return (
+  //   <DndContext
+  //     accessibility={{
+  //       announcements,
+  //     }}
+  //     sensors={sensors}
+  //     onDragStart={onDragStart}
+  //     onDragEnd={onDragEnd}
+  //     onDragOver={onDragOver}
+  //   >
+  //     <BoardContainer>
+  //       <SortableContext items={columnsId}>
+  //         {columns.map((col) => (
+  //           <BoardColumn
+  //             key={col.id}
+  //             column={col}
+  //             tasks={tasks.filter((task) => task.columnId === col.id)}
+  //           />
+  //         ))}
+  //       </SortableContext>
+  //     </BoardContainer>
+
+  //     {"document" in window &&
+  //       createPortal(
+  //         <DragOverlay>
+  //           {activeColumn && (
+  //             <BoardColumn
+  //               isOverlay
+  //               column={activeColumn}
+  //               tasks={tasks.filter(
+  //                 (task) => task.columnId === activeColumn.id
+  //               )}
+  //             />
+  //           )}
+  //           {activeTask && <TaskCard task={activeTask} isOverlay />}
+  //         </DragOverlay>,
+  //         document.body
+  //       )}
+  //   </DndContext>
+  // );
+
+ return (
     <DndContext
       accessibility={{
         announcements,
@@ -251,32 +292,38 @@ export function KanbanBoard() {
     >
       <BoardContainer>
         <SortableContext items={columnsId}>
-          {columns.map((col) => (
-            <BoardColumn
-              key={col.id}
-              column={col}
-              tasks={tasks.filter((task) => task.columnId === col.id)}
-            />
+          {columns?.map((col, index) => (
+            <Fragment key={col.id}>
+              <BoardColumn
+                column={col}
+                tasks={tasks.filter((task) => task.columnId === col.id)}
+              />
+              {index === columns?.length - 1 && (
+                <div className="w-[300px]">
+                  {/* <NewSectionDialog /> */}
+                </div>
+              )}
+            </Fragment>
           ))}
+          {/* {!columns.length && <NewSectionDialog />} */}
         </SortableContext>
       </BoardContainer>
 
       {"document" in window &&
         createPortal(
-          // @ts-ignore
           <DragOverlay>
             {activeColumn && (
               <BoardColumn
                 isOverlay
                 column={activeColumn}
-                tasks={tasks.filter(
+                 tasks={tasks.filter(
                   (task) => task.columnId === activeColumn.id
                 )}
               />
             )}
             {activeTask && <TaskCard task={activeTask} isOverlay />}
           </DragOverlay>,
-          document.body
+          document.body,
         )}
     </DndContext>
   );
